@@ -1,4 +1,5 @@
 import React from "react";
+//React Google Charts
 import Chart from "react-google-charts";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -7,12 +8,10 @@ import Col from "react-bootstrap/Col";
 const HeartRate = props => {
   return (
     <>
-      <title>Target Heart Rate Zone</title>
       <Container>
         <Row>
           <Col md={{ span: 8, offset: 2 }}>
             <Chart
-              className="chart"
               width="auto"
               chartType="ColumnChart"
               loader={<div>Loading Chart</div>}
