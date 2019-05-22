@@ -126,8 +126,6 @@ class App extends Component {
   }
 
   render() {
-    console.log("result: ", this.state.result);
-    let adv = Ads[1];
     let display;
     if (this.state.view === "About Me") {
       display = <MyStory />;
@@ -239,25 +237,22 @@ class App extends Component {
             target heart rate it doesn't matter what activity you're doing as
             long as you keep up with your diet plan and stay within the target
             heart rate zone during exercise you are well on your way.
-            {display}
           </p>
+          {display}
         </article>
         <aside className="side">
           Sidebar{" "}
           <TwitterTimelineEmbed
             className="tweet"
-            autoHeight={"true"}
+            autoHeight={true}
             sourceType="profile"
             screenName="theweicode"
             options={{ height: 300 }}
-            noHeader="true"
-            noFooter="true"
+            noHeader={true}
+            noFooter={true}
           />
         </aside>
-        <div className="ad">
-          Advertising
-          <img src={fatDog} style={{ border: "none" }} />
-        </div>
+        <div className="ad">Advertising</div>
         <footer className="main-footer">The footer</footer>
       </div>
 
