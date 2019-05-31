@@ -9,9 +9,6 @@ import Ads from "./HR/Data/Ads";
 import MyStory from "./HR/Components/MyStory";
 import HeartRate from "./HR/Components/HeartRate";
 import Timeline from "./HR/Components/Timeline";
-import HealthQuiz from "./HR/Components/HealthQuiz/HealthQuiz";
-import quizQuestions from "./HR/Components/HealthQuiz/quizQuestions";
-import Result from "./HR/Components/HealthQuiz/Result";
 
 //MEDIA
 import fatDog from "./MEDIA/fatdogwalk.mp4";
@@ -22,7 +19,7 @@ import update from "react-addons-update";
 import { TwitterTimelineEmbed } from "react-twitter-embed";
 
 import "./App.scss";
-
+import Typed from "react-typed";
 //React-Gif-Player
 /* var ReactDOM = require("react-dom");
 var GifPlayer = require("react-gif-player");
@@ -34,96 +31,10 @@ class App extends Component {
     super();
 
     this.state = {
-      view: "HeartRate",
-      counter: 0,
-      questionId: 1,
-      question: "",
-      answerOptions: [],
-      answer: "",
-      answersCount: {},
-      result: ""
+      view: "HeartRate"
     };
-    this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
-  componentDidMount() {
-    const shuffledAnswerOptions = quizQuestions.map(question =>
-      this.shuffleArray(question.answers)
-    );
-    this.setState({
-      question: quizQuestions[0].question,
-      answerOptions: shuffledAnswerOptions[0]
-    });
-  }
-
-  shuffleArray(array) {
-    var currentIndex = array.length,
-      temporaryValue,
-      randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-  }
-
-  handleAnswerSelected(event) {
-    this.setUserAnswer(event.currentTarget.value);
-
-    if (this.state.questionId < quizQuestions.length) {
-      setTimeout(() => this.setNextQuestion(), 300);
-    } else {
-      setTimeout(() => this.setResults(this.getResults()), 300);
-    }
-  }
-
-  setUserAnswer(answer) {
-    this.setState((state, props) => ({
-      answersCount: {
-        ...state.answersCount,
-        [answer]: (state.answersCount[answer] || 0) + 1
-      },
-      answer: answer
-    }));
-  }
-
-  setNextQuestion() {
-    const counter = this.state.counter + 1;
-    const questionId = this.state.questionId + 1;
-
-    this.setState({
-      counter: counter,
-      questionId: questionId,
-      question: quizQuestions[counter].question,
-      answerOptions: quizQuestions[counter].answers,
-      answer: ""
-    });
-  }
-
-  getResults() {
-    const answersCount = this.state.answersCount;
-    const answersCountKeys = Object.keys(answersCount);
-    const answersCountValues = answersCountKeys.map(key => answersCount[key]);
-    const maxAnswerCount = Math.max.apply(null, answersCountValues);
-
-    return answersCountKeys.filter(key => answersCount[key] === maxAnswerCount);
-  }
-
-  setResults(result) {
-    if (result.length === 1) {
-      this.setState({ result: result[0] });
-    } else {
-      this.setState({ result: "Undetermined" });
-    }
-  }
+  componentDidMount() {}
 
   render() {
     let display;
@@ -137,52 +48,19 @@ class App extends Component {
       display = <Timeline />;
     }
     if (this.state.view === "Health Quiz") {
-      console.log("Rrrrestult::::", this.state.result);
-      if (this.state.result.length > 0) {
-        console.log("results greater than 0: ", this.state.result);
-        display = (
-          <>
-            {" "}
-            <Result quizResult={this.state.result} />;{" "}
-            <img
-              src="https://i.imgur.com/poHHbRK.jpg"
-              onClick={() => {
-                this.setState({
-                  counter: 0,
-                  questionId: 1,
-                  question: "",
-                  answerOptions: [],
-                  answer: "",
-                  answersCount: {},
-                  result: ""
-                });
-              }}
-            />
-          </>
-        );
-      }
-      if (this.state.result === "") {
-        display = (
-          <>
-            <HealthQuiz
-              answer={this.state.answer}
-              answerOptions={this.state.answerOptions}
-              questionId={this.state.questionId}
-              question={this.state.question}
-              questionTotal={quizQuestions.length}
-              onAnswerSelected={this.handleAnswerSelected}
-            />
-          </>
-        );
-      }
+      display = <h3>Health Quiz</h3>;
     }
 
     return (
       <div className="wrapper">
         <header className="main-head">
           {" "}
-          Remember to always put safety as your #1 priority: Do not over exert
-          yourself
+          <Typed
+            strings={[
+              "Remember to always put safety as your #1 priority: Do not over exert yourself"
+            ]}
+            typeSpeed={40}
+          />
         </header>
         <nav className="main-nav">
           <ul>

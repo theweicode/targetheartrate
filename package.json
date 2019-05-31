@@ -12,7 +12,8 @@
     "react-gif-player": "^0.4.2",
     "react-google-charts": "^3.0.13",
     "react-scripts": "3.0.1",
-    "react-twitter-embed": "^2.0.8"
+    "react-twitter-embed": "^2.0.8",
+    "react-typed": "^1.1.2"
   },
   "scripts": {
     "start": "react-scripts start",

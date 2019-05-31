@@ -1,9 +1,8 @@
 import React from "react";
-import Typed from "react-typed";
 
-const Timeline = props => {
+const TypedMsg = props => {
   return (
-    <div>
+    <>
       <Typed strings={["Here you can find anything"]} typeSpeed={40} />
       <br />
 
@@ -20,8 +19,8 @@ const Timeline = props => {
       >
         <input type="text" />
       </Typed>
-    </div>
+    </>
   );
 };
 
-export default Timeline;
+export default TypedMsg;
